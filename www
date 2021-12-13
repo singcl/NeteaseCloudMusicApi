@@ -19,7 +19,6 @@ exec('npm info NeteaseCloudMusicApi version', (err, stdout, stderr) => {
 
 const app = express()
 const father = express()
-father.use('/melody', app)
 
 // CORS
 app.use((req, res, next) => {
@@ -86,8 +85,9 @@ fs.readdirSync(path.join(__dirname, 'module')).reverse().forEach(file => {
 
 const port = process.env.PORT || 3000
 
-app.server = app.listen(port, () => {
+father.use('/melody', app)
+father.server = father.listen(port, () => {
     console.log(`server running @ http://localhost:${port}`)
 })
 
-module.exports = app
+module.exports = father
