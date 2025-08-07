@@ -1,8 +1,10 @@
 // 独家放送
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-    return request(
-        'POST', `https://music.163.com/weapi/personalized/privatecontent`, {},
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
-    )
+  return request(
+    `/api/personalized/privatecontent`,
+    {},
+    createOption(query, 'weapi'),
+  )
 }

@@ -1,13 +1,11 @@
 // 歌曲详情
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-    query.ids = query.ids.split(/\s*,\s*/)
-    const data = {
-        c: '[' + query.ids.map(id => ('{"id":' + id + '}')).join(',') + ']',
-        ids: '[' + query.ids.join(',') + ']'
-    }
-    return request(
-        'POST', `https://music.163.com/weapi/v3/song/detail`, data,
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
-    )
+  // 歌曲数量不要超过1000
+  query.ids = query.ids.split(/\s*,\s*/)
+  const data = {
+    c: '[' + query.ids.map((id) => '{"id":' + id + '}').join(',') + ']',
+  }
+  return request(`/api/v3/song/detail`, data, createOption(query, 'weapi'))
 }

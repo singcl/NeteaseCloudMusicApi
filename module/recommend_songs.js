@@ -1,13 +1,11 @@
 // 每日推荐歌曲
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-    const data = {
-        limit: 20,
-        offset: 0,
-        total: true
-    }
-    return request(
-        'POST', `https://music.163.com/weapi/v1/discovery/recommend/songs`, data,
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
-    )
+  const data = {}
+  return request(
+    `/api/v3/discovery/recommend/songs`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

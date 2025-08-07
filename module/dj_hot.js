@@ -1,17 +1,10 @@
 // 热门电台
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-    const data = {
-        cat: query.type,
-        cateId: query.type,
-        type: query.type,
-        categoryId: query.type,
-        category: query.type,
-        limit: query.limit,
-        offset: query.offset
-    }
-    return request(
-        'POST', `https://music.163.com/weapi/djradio/hot/v1`, data,
-        {crypto: 'weapi', cookie: query.cookie, proxy: query.proxy}
-    )
+  const data = {
+    limit: query.limit || 30,
+    offset: query.offset || 0,
+  }
+  return request(`/api/djradio/hot/v1`, data, createOption(query, 'weapi'))
 }

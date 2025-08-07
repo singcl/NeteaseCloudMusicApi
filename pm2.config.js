@@ -2,7 +2,7 @@ const config = {
     apps: [
         {
             name: 'API.MUSIC_8997',
-            script: './www', // 实际启动脚本
+            script: './app.js', // 实际启动脚本
             cwd: './', // "当前工作路径"
             node_args: '--harmony', // node运行模式
             max_memory_restart: '200M',
