@@ -13,6 +13,7 @@
     "pkgmacos": "pkg . -t node18-macos-x64 -C GZip -o bin/app --no-bytecode"
   },
   "bin": "./app.js",
+  "type": "commonjs",
   "pkg": {
     "scripts": "module/*.js",
     "assets": [
