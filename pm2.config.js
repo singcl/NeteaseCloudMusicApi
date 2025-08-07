@@ -6,7 +6,7 @@ const config = {
             cwd: './', // "当前工作路径"
             node_args: '--harmony', // node运行模式
             max_memory_restart: '200M',
-            instances: '2',
+            instances: '1',
             exec_mode: 'cluster',
             watch: false,
             error_file: './logs/pm2_errors.log', // 错误日志路径
