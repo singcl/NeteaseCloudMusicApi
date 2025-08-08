@@ -3,7 +3,7 @@
 const serverless = require('serverless-http');
 const {consturctServer} = require('../../server');
 
-const app = consturctServer();
+const app = await consturctServer();
 
 //  // 检测是否存在 anonymous_token 文件,没有则生成
 //   if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {
@@ -11,4 +11,4 @@ const app = consturctServer();
 //   }
 
 // Export the serverless handler for Netlify Functions
-exports.handler = serverless(app); 
+exports.handler = serverless(app);
