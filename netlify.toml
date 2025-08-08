@@ -11,7 +11,7 @@
 
 # Redirect rules for SPA and API
 [[redirects]]
-  from = "/*"
+  from = "/api/*, /search/*, /song/*, /artist/*, /album/*, /playlist/*, /user/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
 
