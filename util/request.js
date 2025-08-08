@@ -9,10 +9,10 @@ const fs = require('fs')
 const path = require('path')
 const tmpPath = require('os').tmpdir()
 const { cookieToJson, cookieObjToString, toBoolean } = require('./index')
-const anonymous_token = fs.readFileSync(
-  path.resolve(tmpPath, './anonymous_token'),
-  'utf-8',
-)
+// const anonymous_token = fs.readFileSync(
+//   path.resolve(tmpPath, './anonymous_token'),
+//   'utf-8',
+// )
 const { URLSearchParams, URL } = require('url')
 const { APP_CONF } = require('../util/config.json')
 // request.debug = true // 开启可看到更详细信息
@@ -112,7 +112,8 @@ const createRequest = (uri, data, options) => {
       }
       if (!cookie.MUSIC_U) {
         // 游客
-        cookie.MUSIC_A = cookie.MUSIC_A || anonymous_token
+        // cookie.MUSIC_A = cookie.MUSIC_A || anonymous_token
+        cookie.MUSIC_A = cookie.MUSIC_A
       }
       headers['Cookie'] = cookieObjToString(cookie)
     }
