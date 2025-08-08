@@ -11,7 +11,27 @@
 
 # Redirect rules for SPA and API
 [[redirects]]
-  from = "/api/*, /search/*, /song/*, /artist/*, /album/*, /playlist/*, /user/*"
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/search/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/album/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/artist/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/comment/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
 
