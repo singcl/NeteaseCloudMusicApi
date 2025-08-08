@@ -3,7 +3,7 @@
 const serverless = require('serverless-http');
 const {consturctServer} = require('../../server');
 
-const app = await consturctServer();
+const app = consturctServer();
 
 //  // 检测是否存在 anonymous_token 文件,没有则生成
 //   if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {

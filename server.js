@@ -58,16 +58,16 @@ const VERSION_CHECK_RESULT = {
  * @param {Record<string, string>} [specificRoute] The specific route of specific modules.
  * @param {boolean} [doRequire] If true, require() the module directly.
  * Otherwise, print out the module path. Default to true.
- * @returns {Promise<ModuleDefinition[]>} The module definitions.
+ * @returns {ModuleDefinition[]} The module definitions.
  *
  * @example getModuleDefinitions("./module", {"album_new.js": "/album/create"})
  */
-async function getModulesDefinitions(
+function getModulesDefinitions(
   modulesPath,
   specificRoute,
   doRequire = true,
 ) {
-  const files = await fs.promises.readdir(modulesPath)
+  const files = fs.readdirSync(modulesPath)
   const parseRoute = (/** @type {string} */ fileName) =>
     specificRoute && fileName in specificRoute
       ? specificRoute[fileName]
@@ -129,9 +129,9 @@ async function checkVersion() {
  * Construct the server of NCM API.
  *
  * @param {ModuleDefinition[]} [moduleDefs] Customized module definitions [advanced]
- * @returns {Promise<import("express").Express>} The server instance.
+ * @returns {import("express").Express} The server instance.
  */
-async function consturctServer(moduleDefs) {
+function consturctServer(moduleDefs) {
   const app = express()
   const { CORS_ALLOW_ORIGIN } = process.env
   app.set('trust proxy', true)
@@ -200,7 +200,7 @@ async function consturctServer(moduleDefs) {
    */
   const moduleDefinitions =
     moduleDefs ||
-    (await getModulesDefinitions(path.join(__dirname, 'module'), special))
+    (getModulesDefinitions(path.join(__dirname, 'module'), special))
 
   for (const moduleDef of moduleDefinitions) {
     // Register the route.
@@ -220,7 +220,7 @@ async function consturctServer(moduleDefs) {
       )
 
       try {
-        const moduleResponse = await moduleDef.module(query, (...params) => {
+        const moduleResponse = moduleDef.module(query, (...params) => {
           // 参数注入客户端IP
           const obj = [...params]
           let ip = req.ip
